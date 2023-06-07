@@ -6,16 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
-@Table(name ="coupon_policy")
+@Table(name ="coupon")
 @NoArgsConstructor
-public class CouponPolicy {
+public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
     private Event event;
 
@@ -23,8 +26,11 @@ public class CouponPolicy {
     private Long quantity;
 
     @Column(nullable = false)
-    private OffsetDateTime dateIssued;
+    private OffsetDateTime datePublished;
 
     @Column(nullable = false)
-    private OffsetDateTime dataExpire;
+    private OffsetDateTime dateExpire;
+
+    @OneToMany(mappedBy = "coupon")
+    private List<UserCoupon> users = new ArrayList<>();
 }
