@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/coupon?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true
+    username: haneul
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      jdbc-url: jdbc:mysql://localhost:3306/coupon?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      maximum-pool-size: 50
+#      max-lifetime: 30000
+#      username: haneul
+#      password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6380
+
+logging:
+  level:
+    sql:
+      debug
