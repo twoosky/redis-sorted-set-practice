@@ -22,6 +22,10 @@ public class WaitingQueueService {
 
     public Boolean add(Event event, Object value) {
         double now = (double) System.currentTimeMillis();
+        if (redisRepository.sIsMember(event.toString(), value)) {
+            log.info("[WaitingQueueService :: add] 쿠폰 중복 발급 key = {}, vlaue = {}", event, value);
+            return false;
+        }
         Boolean result = redisRepository.zAdd(event.toString(), value, now);
         log.info("[WaitingQueueService :: add] key = {}, value = {}, score={}", event, value, now);
         return result;
