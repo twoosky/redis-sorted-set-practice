@@ -36,6 +36,10 @@ public class RedisRepository {
         return redisTemplate.opsForZSet().size(key);
     }
 
+    public Boolean sIsMember(String key, Object value) {
+        return redisTemplate.opsForSet().isMember(SET_BASE_KEY + key, value);
+    }
+
     public Long sAdd(String key, Object value) {
         return redisTemplate.opsForSet().add(SET_BASE_KEY + key, value);
     }
